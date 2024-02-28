@@ -1,10 +1,8 @@
-from rest_framework import generics, status, exceptions, permissions
+from rest_framework import generics, status, exceptions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Category, Product
-from .serializers import CategorySerializer, ProductSerializer, CreateProductSerializer, UserCreationSerializer
-from django.contrib.auth.models import User
-
+from .serializers import CategorySerializer, ProductSerializer, CreateProductSerializer
 
 
 class CategoryEndpoint(APIView):
@@ -19,7 +17,6 @@ class CategoryEndpoint(APIView):
 
         if serializer.is_valid():
             serializer.save()
-            # calls the create or update method on the request type
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -125,7 +122,3 @@ class ProductDetailEndpoint(APIView):
         return Response({'message': 'Product deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
 
 
-# class UserResgisterEndpoint(generics.CreateAPIView):
-#     queryset = User.objects.all()
-#     permission_classes = [permissions.AllowAny]
-#     serializer_class = UserCreationSerializer
