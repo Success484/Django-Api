@@ -11,7 +11,6 @@ urlpatterns = [
     path('products/<int:pk>/delete/', views.ProductDeleteEndpoint.as_view(), name='products-del'),
     path('update/category/<int:pk>/', views.UpdateCategoryEndpoint.as_view(),  name='update-category'),
     path('update/product/<int:pk>/', views.UpdateProductEndpoint.as_view(), name='update-product'),
-    path('users/', views.UserResgisterEndpoint.as_view(), name='user-create'),
     path('login/', auth_view.ObtainAuthToken.as_view(), name='login'),
     path('product-list/', views.ProductListEndPoint.as_view(), name='product_id'),
 ]
